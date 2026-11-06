@@ -157,6 +157,20 @@ npx @modelcontextprotocol/inspector node dist/stdio.js
 
 The server uses the official [Node.js SDK](https://github.com/chartquery/chartquery-node) (`@chartquery/sdk`).
 
+## All ChartQuery SDKs
+
+| SDK        | Package                                                                   | Install                                      |
+| ---------- | ------------------------------------------------------------------------- | -------------------------------------------- |
+| Node.js    | [`@chartquery/sdk`](https://www.npmjs.com/package/@chartquery/sdk)        | `npm install @chartquery/sdk`                |
+| Python     | [`chartquery`](https://pypi.org/project/chartquery/)                      | `pip install chartquery`                     |
+| Go         | [`chartquery-go`](https://pkg.go.dev/github.com/chartquery/chartquery-go) | `go get github.com/chartquery/chartquery-go` |
+| .NET       | [`ChartQuery`](https://www.nuget.org/packages/ChartQuery)                 | `dotnet add package ChartQuery`              |
+| Ruby       | [`chartquery`](https://rubygems.org/gems/chartquery)                      | `gem install chartquery`                     |
+| PHP        | [`chartquery/sdk`](https://packagist.org/packages/chartquery/sdk)         | `composer require chartquery/sdk`            |
+| Java       | [`chartquery-java`](https://github.com/chartquery/chartquery-java)        | build from source, see its README            |
+| CLI        | [`@chartquery/cli`](https://www.npmjs.com/package/@chartquery/cli)        | `npm install -g @chartquery/cli`             |
+| MCP server | [`@chartquery/mcp`](https://www.npmjs.com/package/@chartquery/mcp)        | `npx -y @chartquery/mcp`                     |
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
