@@ -1,0 +1,136 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/mcpb/main/schemas/mcpb-manifest-v0.4.schema.json",
+  "manifest_version": "0.4",
+  "name": "chartquery-mcp",
+  "display_name": "ChartQuery",
+  "version": "0.1.0",
+  "description": "ChartQuery chart and QR code API for Claude.",
+  "long_description": "Generate chart images, diagrams, barcodes, QR codes and thermal labels on demand. PNG, SVG or PDF output.",
+  "author": {
+    "name": "ChartQuery",
+    "email": "contact@chartquery.com",
+    "url": "https://www.chartquery.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chartquery/chartquery-mcp"
+  },
+  "homepage": "https://www.chartquery.com",
+  "documentation": "https://github.com/chartquery/chartquery-mcp#readme",
+  "support": "mailto:contact@chartquery.com",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/dist/stdio.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/dist/stdio.js"],
+      "env": {
+        "CHARTQUERY_API_KEY": "${user_config.CHARTQUERY_API_KEY}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "barcode",
+      "description": "Generate a barcode image via GET. Output: SVG (default) or PNG. Supports 25+ formats: EAN-13, Code 128, ITF-14, GS1-128, postal codes and more."
+    },
+    {
+      "name": "chart",
+      "description": "Render a Chart.js image via GET. Pass the full chart object as URL-encoded JSON in query. Prefer format png for ChatGPT. POST sends the same object as a JSON body, not query."
+    },
+    {
+      "name": "chart_ai",
+      "description": "Describe a chart in plain English via GET and get a rendered image back. Powered by AI."
+    },
+    {
+      "name": "chart_render",
+      "description": "Render a previously saved chart by ID. Public, no API key required. Supports URL overrides for templates (?data1=, ?labels=, ?title=…)."
+    },
+    {
+      "name": "chart_view",
+      "description": "View a previously saved chart as an interactive HTML page. Public, no API key required. Iframe-embeddable."
+    },
+    {
+      "name": "diagram",
+      "description": "Render a diagram via GET. Use type (mermaid, d2, …), query (source code), and format=png for ChatGPT. POST uses diagram_type and diagram_source instead."
+    },
+    {
+      "name": "diagram_ai",
+      "description": "Describe a diagram in plain English via GET and get a rendered image back. Powered by AI."
+    },
+    {
+      "name": "diagram_render",
+      "description": "Render a previously saved diagram by ID. Public, no API key required. Supports ?format= and ?query= overrides."
+    },
+    {
+      "name": "diagram_view",
+      "description": "View a previously saved diagram as an HTML page. Public, no API key required. Iframe-embeddable with inline SVG rendering."
+    },
+    {
+      "name": "label",
+      "description": "Preview a thermal label via GET. Pass the same label object as a URL-encoded JSON string in query. Inside that JSON, text items use content and size (1-10), not text or fontSize. Prefer format=png fo…"
+    },
+    {
+      "name": "label_compile",
+      "description": "Compile a label to printer commands (tsc, zpl, epl, …). POST width, language, and elements. Text uses content and size (1-10), not text or fontSize. No barcode element. Example: {\"width\":40,\"height\":…"
+    },
+    {
+      "name": "label_convert",
+      "description": "Convert printer commands from one language to another. POST source, from, and to. from is the source language (tsc, zpl, epl, …). to is the target (tsc, zpl, escpos, …)."
+    },
+    {
+      "name": "label_parse",
+      "description": "Parse printer commands into structured elements. POST source and language (tsc, zpl, epl, …)."
+    },
+    {
+      "name": "label_render",
+      "description": "Render a previously saved label by ID. Public, no API key required. Supports ?format= override."
+    },
+    {
+      "name": "label_validate",
+      "description": "Validate printer commands. POST source (the raw commands) and language (tsc, zpl, epl, …)."
+    },
+    {
+      "name": "label_view",
+      "description": "View a previously saved label as an HTML page. Public, no API key required. Iframe-embeddable with inline SVG rendering."
+    },
+    {
+      "name": "qrcode",
+      "description": "Generate a styled QR code via GET. Output: SVG (default) or PNG. Supports dot styles, gradients, custom corners and all QR versions."
+    },
+    {
+      "name": "stats",
+      "description": "Infrastructure health for an engine or endpoint over the last hour. Not scoped to your account or tenant. Enabled per account: HTTP 403 means contact support to activate it."
+    },
+    {
+      "name": "usage",
+      "description": "Return this account's Chartquery usage and credit balance. No body. Requires an API key."
+    }
+  ],
+  "tools_generated": false,
+  "keywords": [
+    "mcp",
+    "chartquery",
+    "chart-api",
+    "qr-code-api",
+    "barcode-api",
+    "diagram-api"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20"
+    }
+  },
+  "user_config": {
+    "CHARTQUERY_API_KEY": {
+      "type": "string",
+      "title": "ChartQuery API key",
+      "description": "Your API key from https://app.chartquery.com.",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}
